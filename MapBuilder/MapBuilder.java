@@ -1,15 +1,33 @@
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import java.awt.event.KeyEvent;
 
 public class MapBuilder {
 
-    public static PanelManager pm = new PanelManager(25);
+    public static PanelManager pm;
+    public static int mapSize;
+
 
     public static void main(String[] args) {
         
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                mapSize = Integer.parseInt(JOptionPane.showInputDialog("Please Enter the Map Size"));
+            }
+        });
+
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            System.exit(1);
+        }
+
+        pm = new PanelManager(mapSize);
         JFrame frame = new JFrame("Map Builder for Boom");
         JMenuBar jmb = new JMenuBar();
 
@@ -33,6 +51,8 @@ public class MapBuilder {
         frame.setVisible(true);
 
     }
+
+
 
 
     
