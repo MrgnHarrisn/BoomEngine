@@ -73,7 +73,7 @@ public class PanelManager extends JPanel {
 
         // Add tiles to the tilingPanel
         for (int i = 0; i < tiles.length; i++) {
-            tiles[i] = new Tile();
+            tiles[i] = new Tile(tm.getTexture(0));
             tiles[i].setBackground(Color.GRAY);
             tiles[i].setPreferredSize(new Dimension(64, 64));
             tiles[i].addMouseListener(pl);
