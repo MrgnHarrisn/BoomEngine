@@ -61,6 +61,15 @@ public class TextureManager {
         return textures[index];
     }
 
+    public int getTextureIndex(String name) {
+        for (int i = 0; i < textures.length; i++) {
+            if (textures[i].getTextureName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;          // If there is no found texture which would mean we didn't import it
+    }
+
     /**
      * Returns all textures in an array
      * @return      All the textures in an array Texture[]
