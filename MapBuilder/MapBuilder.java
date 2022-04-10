@@ -1,11 +1,12 @@
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
 import java.awt.event.KeyEvent;
 
 public class MapBuilder {
 
-    public static PanelManager pm = new PanelManager(5);
+    public static PanelManager pm = new PanelManager(25);
 
     public static void main(String[] args) {
         
