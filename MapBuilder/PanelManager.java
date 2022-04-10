@@ -57,7 +57,7 @@ public class PanelManager extends JPanel {
 
         // Create the grid Layout
         tilingPanel = new JPanel(new GridLayout(this.mapSize, this.mapSize, 1, 1));
-        tilingPanel.setPreferredSize(new Dimension(480, 600));
+        tilingPanel.setPreferredSize(new Dimension(600, 600));
 
         // Set the size of the textures array
         textures = new Tile[tm.size()];
@@ -71,6 +71,7 @@ public class PanelManager extends JPanel {
             // Set the tile to the texture at the index in the TextureManager
             textures[i] = new Tile(tm.getTexture(i));
             textures[i].addMouseListener(pl);
+            textures[i].setBackground(Color.black);
             texturePanel.add(textures[i]);
 
         }
@@ -88,6 +89,10 @@ public class PanelManager extends JPanel {
         // add the two subPanels to the main panel
         add(texturePanel);
         add(tilingPanel);
+
+    }
+
+    public void open() {
 
     }
 

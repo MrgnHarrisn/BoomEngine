@@ -14,7 +14,7 @@ import src.texture.TextureManager;
 
 public class Game extends JFrame implements Runnable {
     
-    public int WIDTH = 1920, HEIGHT = 1080;
+    public int WIDTH = 720, HEIGHT = 450;
 	private Thread thread;
 	private boolean running;
 	private BufferedImage image;

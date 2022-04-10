@@ -133,7 +133,7 @@ public class Screen {
 				texX = tm.getTexture(texNum).SIZE - texX - 1;
 			}
 		    //calculate y coordinate on texture
-		    for(int y=drawStart; y<drawEnd; y++) {
+		    for(int y = drawStart; y < drawEnd; y++) {
 		    	int texY = (((y*2 - height + lineHeight) << 6) / lineHeight) / 2;
 		    	int color;
 		    	if(side == 0) {
