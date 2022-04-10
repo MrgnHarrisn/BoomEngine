@@ -1,1 +1,3 @@
-.mdf
+*.mdf
+BoomEngine/Art
+MapBuilder/Art
