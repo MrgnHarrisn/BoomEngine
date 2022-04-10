@@ -4,6 +4,9 @@ import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 
 import texture.Texture;
 import texture.TextureManager;
@@ -75,7 +78,8 @@ public class PanelManager extends JPanel {
         for (int i = 0; i < tiles.length; i++) {
             tiles[i] = new Tile(tm.getTexture(0));
             tiles[i].setBackground(Color.GRAY);
-            tiles[i].setPreferredSize(new Dimension(64, 64));
+            // tiles[i].setMinimumSize(new Dimension(64, 64));
+            tiles[i].setMaximumSize(new Dimension(64, 64));
             tiles[i].addMouseListener(pl);
             tilingPanel.add(tiles[i]);
         }
@@ -83,6 +87,36 @@ public class PanelManager extends JPanel {
         // add the two subPanels to the main panel
         add(texturePanel);
         add(tilingPanel);
+
+    }
+
+    public void save() {
+        String output = "";
+        int tileCounter = 0;
+
+        // While loop to make the file name
+
+        while (true) {
+            int fileNum = 0;
+            File f = new File("mapdata" + fileNum + ".mdf");
+            try {
+                if (!f.createNewFile()) {
+                fileNum++;
+                } else {
+                    break;
+                }
+            } catch (IOException e) {
+                System.out.println("There has been an error");
+            }
+        }
+
+        // Itterate through the tiles and add each tile name to the file contents
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++, tileCounter++) {
+                output += tiles[tileCounter].getTexture().getTextureName() + ",";
+            }
+            output += "\n";
+        }
 
     }
 
@@ -120,11 +154,9 @@ public class PanelManager extends JPanel {
             
             if (contains(textures, e.getSource())) {
                 current = getTextureFromPanel(textures, e.getSource());
-                System.out.println(current.getTextureName());
             } else {
                 Tile temp = getTile(tiles, e.getSource());
                 temp.setTexture(current);
-                System.out.println(temp.getTexture().getTextureName());
             }
             
         }
