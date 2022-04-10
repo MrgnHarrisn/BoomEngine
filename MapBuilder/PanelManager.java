@@ -4,7 +4,9 @@ import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 
@@ -96,11 +98,13 @@ public class PanelManager extends JPanel {
 
         // While loop to make the file name
 
+        int fileNum = 0;
+        File file = new File("mapdata" + fileNum + ".mdf");
+
         while (true) {
-            int fileNum = 0;
-            File f = new File("mapdata" + fileNum + ".mdf");
             try {
-                if (!f.createNewFile()) {
+                file = new File("mapdata" + fileNum + ".mdf");
+                if (!file.createNewFile()) {
                 fileNum++;
                 } else {
                     break;
@@ -116,6 +120,14 @@ public class PanelManager extends JPanel {
                 output += tiles[tileCounter].getTexture().getTextureName() + ",";
             }
             output += "\n";
+        }
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write(output);
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("File wasn't made");
         }
 
     }
